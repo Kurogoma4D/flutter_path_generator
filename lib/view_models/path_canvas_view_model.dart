@@ -1,4 +1,5 @@
-import 'package:flutter/rendering.dart';
+import 'dart:ui';
+
 import 'package:flutter_path_generator/models/path_points.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

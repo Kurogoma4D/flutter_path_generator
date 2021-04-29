@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_path_generator/views/code_area.dart';
 import 'package:flutter_path_generator/views/path_canvas.dart';
 
 class BaseView extends StatelessWidget {
@@ -13,11 +14,9 @@ class BaseView extends StatelessWidget {
             Expanded(
               flex: 3,
               child: Container(
-                color: Colors.teal,
+                color: Colors.blueGrey,
                 height: constraints.maxHeight,
-                child: Center(
-                  child: Text('yey'),
-                ),
+                child: const CodeArea(),
               ),
             ),
             Expanded(
