@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:flutter_path_generator/models/canvas_mode.dart';
+import 'package:flutter_path_generator/models/canvas_origin.dart';
 import 'package:flutter_path_generator/models/path_points.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,8 +18,18 @@ class PathCanvasViewModel {
 
   PathCanvasViewModel({required this.read, required this.points});
 
-  void addPoint(double x, double y) =>
-      read(pathPointsProvider.notifier).addPoint(x, y);
+  void onTapCanvas(double x, double y) {
+    switch (read(canvasModeProvider).state) {
+      case CanvasMode.addLinear:
+        read(pathPointsProvider.notifier).addPoint(x, y);
+        break;
+      case CanvasMode.setOrigin:
+        read(canvasOriginProvider.notifier).setOrigin(Offset(x, y));
+        break;
+    }
+  }
+
+  void setCanvasMode(CanvasMode mode) => read(canvasModeProvider).state = mode;
 
   void reset() => read(pathPointsProvider.notifier).deleteAll();
 }
