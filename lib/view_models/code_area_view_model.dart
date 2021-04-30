@@ -22,9 +22,14 @@ class CodeAreaViewModel {
   CodeAreaViewModel({required this.read, required this.points});
 
   String get generatedCode {
-    final path = CodeExpression(Code('Path()'))
-      ..cascade('close')
-      ..call([]);
+    var path = CodeExpression(Code('Path')).call([]);
+
+    for (final point in points) {
+      path = path.cascade('lineTo').call([
+        CodeExpression(Code('${point.dx.toStringAsFixed(3)}')),
+        CodeExpression(Code('${point.dy.toStringAsFixed(3)}')),
+      ]);
+    }
 
     final variable = Field(
       (b) => b
