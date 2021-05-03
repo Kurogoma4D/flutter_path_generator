@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_path_generator/models/canvas_mode.dart';
 import 'package:flutter_path_generator/models/canvas_origin.dart';
+import 'package:flutter_path_generator/models/pointer_location.dart';
 import 'package:flutter_path_generator/view_models/path_canvas_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+
+const isDebug = !bool.fromEnvironment('dart.vm.product');
 
 class PathCanvas extends StatelessWidget {
   const PathCanvas({Key? key}) : super(key: key);
@@ -13,12 +16,19 @@ class PathCanvas extends StatelessWidget {
     return Stack(
       children: [
         Positioned.fill(
-          child: GestureDetector(
-            onTapUp: (detail) => context
+          child: MouseRegion(
+            onHover: (event) => context
                 .read(pathCanvasViewModel)
-                .onTapCanvas(detail.localPosition.dx, detail.localPosition.dy),
-            behavior: HitTestBehavior.opaque,
-            child: const _Canvas(),
+                .updatePointerLocation(
+                    event.localPosition.dx, event.localPosition.dy),
+            child: GestureDetector(
+              onTapUp: (detail) => context
+                  .read(pathCanvasViewModel)
+                  .onTapCanvas(
+                      detail.localPosition.dx, detail.localPosition.dy),
+              behavior: HitTestBehavior.opaque,
+              child: const _Canvas(),
+            ),
           ),
         ),
         Positioned(
@@ -37,6 +47,12 @@ class PathCanvas extends StatelessWidget {
             ],
           ),
         ),
+        if (isDebug)
+          Positioned(
+            bottom: 0,
+            left: 0,
+            child: _DebugPointerLocation(),
+          )
       ],
     );
   }
@@ -127,4 +143,14 @@ class _PathPainter extends CustomPainter {
   bool shouldRepaint(covariant _PathPainter oldDelegate) =>
       oldDelegate.points.length != points.length ||
       origin != oldDelegate.origin;
+}
+
+class _DebugPointerLocation extends ConsumerWidget {
+  const _DebugPointerLocation({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, ScopedReader watch) {
+    final location = watch(pointerLocationProvider).state;
+    return Text('$location}');
+  }
 }
