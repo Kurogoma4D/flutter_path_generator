@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_path_generator/models/canvas_mode.dart';
 import 'package:flutter_path_generator/models/canvas_origin.dart';
+import 'package:flutter_path_generator/models/path_points.dart';
 import 'package:flutter_path_generator/models/pointer_location.dart';
 import 'package:flutter_path_generator/view_models/path_canvas_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -90,19 +91,19 @@ class _Canvas extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final points = watch(pathCanvasViewModel).points;
+    final groups = watch(pathCanvasViewModel).groups;
     final origin = watch(canvasOriginProvider);
     return CustomPaint(
-      painter: _PathPainter(points: points, origin: origin),
+      painter: _PathPainter(groups: groups, origin: origin),
     );
   }
 }
 
 class _PathPainter extends CustomPainter {
-  final List<Offset> points;
+  final List<PathGroup> groups;
   final Offset origin;
 
-  _PathPainter({required this.points, required this.origin});
+  _PathPainter({required this.groups, required this.origin});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -111,14 +112,31 @@ class _PathPainter extends CustomPainter {
     final p = Paint()..color = Colors.cyan;
     final lineP = Paint()
       ..color = Colors.lightGreen
+      ..style = PaintingStyle.stroke
       ..strokeWidth = 4.0;
-    for (var i = 0; i < points.length; i++) {
-      final point = points[i];
-      canvas.drawCircle(point, 6.0, p);
-      if (points.length > 1 && i != 0) {
-        canvas.drawLine(points[i - 1], point, lineP);
+
+    for (final group in groups) {
+      for (final point in group.points) {
+        canvas.drawCircle(point, 6.0, p);
       }
+
+      canvas.drawPath(_generatePathToDraw(group), lineP);
     }
+  }
+
+  Path _generatePathToDraw(PathGroup group) {
+    final path = Path();
+    for (final point in group.points) {
+      if (point == group.points.first) {
+        path.moveTo(point.dx, point.dy);
+        continue;
+      }
+
+      path.lineTo(point.dx, point.dy);
+    }
+
+    if (group.isClosed) path.close();
+    return path;
   }
 
   void _drawOrigin(Canvas canvas, Size size) {
@@ -141,7 +159,7 @@ class _PathPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _PathPainter oldDelegate) =>
-      oldDelegate.points.length != points.length ||
+      oldDelegate.groups.length != groups.length ||
       origin != oldDelegate.origin;
 }
 
