@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_path_generator/controllers/path_points_controller.dart';
 import 'package:flutter_path_generator/models/canvas_mode.dart';
 import 'package:flutter_path_generator/models/canvas_origin.dart';
 import 'package:flutter_path_generator/models/path_points.dart';
@@ -91,7 +92,7 @@ class _Canvas extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final groups = watch(pathCanvasViewModel).groups;
+    final groups = watch(pathPointsProvider).groups;
     final origin = watch(canvasOriginProvider);
     return CustomPaint(
       painter: _PathPainter(groups: groups, origin: origin),

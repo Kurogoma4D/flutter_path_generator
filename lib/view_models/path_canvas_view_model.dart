@@ -3,15 +3,11 @@ import 'dart:ui';
 import 'package:flutter_path_generator/controllers/path_points_controller.dart';
 import 'package:flutter_path_generator/models/canvas_mode.dart';
 import 'package:flutter_path_generator/models/canvas_origin.dart';
-import 'package:flutter_path_generator/models/path_points.dart';
 import 'package:flutter_path_generator/models/pointer_location.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final pathCanvasViewModel = Provider.autoDispose(
-  (ref) => PathCanvasViewModel(
-    read: ref.read,
-    groups: ref.watch(pathPointsProvider).groups,
-  ),
+  (ref) => PathCanvasViewModel(read: ref.read),
 );
 
 final _latestGroupProvider = Provider.autoDispose((ref) {
@@ -20,10 +16,9 @@ final _latestGroupProvider = Provider.autoDispose((ref) {
 });
 
 class PathCanvasViewModel {
-  final List<PathGroup> groups;
   final Reader read;
 
-  PathCanvasViewModel({required this.read, required this.groups});
+  PathCanvasViewModel({required this.read});
 
   void onTapCanvas(double x, double y) {
     switch (read(canvasModeProvider).state) {
