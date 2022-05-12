@@ -13,6 +13,8 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Path Generator',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        useMaterial3: true,
+        splashFactory: InkSparkle.splashFactory,
       ),
       home: const BaseView(),
     );
