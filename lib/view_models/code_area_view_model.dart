@@ -10,8 +10,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final codeAreaViewModel = Provider.autoDispose(
   (ref) => CodeAreaViewModel(
     read: ref.read,
-    groups: ref.watch(pathPointsProvider).groups,
-    origin: ref.watch(canvasOriginProvider),
+    groups: ref.watch(pathPoints).groups,
+    origin: ref.watch(canvasOrigin),
   ),
 );
 

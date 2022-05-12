@@ -3,9 +3,8 @@ import 'dart:ui';
 import 'package:flutter_path_generator/models/path_points.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final pathPointsProvider =
-    StateNotifierProvider<PathPointsController, PathPointsState>(
-        (_) => PathPointsController());
+final pathPoints = StateNotifierProvider<PathPointsController, PathPointsState>(
+    (_) => PathPointsController());
 
 class PathPointsController extends StateNotifier<PathPointsState> {
   PathPointsController({PathPointsState? state})

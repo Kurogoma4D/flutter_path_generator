@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'path_points.dart';
 
@@ -10,35 +12,12 @@ part of 'path_points.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-PathPointsState _$PathPointsStateFromJson(Map<String, dynamic> json) {
-  return _PathPointsState.fromJson(json);
-}
-
-/// @nodoc
-class _$PathPointsStateTearOff {
-  const _$PathPointsStateTearOff();
-
-  _PathPointsState call({List<PathGroup> groups = const []}) {
-    return _PathPointsState(
-      groups: groups,
-    );
-  }
-
-  PathPointsState fromJson(Map<String, Object> json) {
-    return PathPointsState.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $PathPointsState = _$PathPointsStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$PathPointsState {
   List<PathGroup> get groups => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PathPointsStateCopyWith<PathPointsState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -75,33 +54,33 @@ class _$PathPointsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$PathPointsStateCopyWith<$Res>
+abstract class _$$_PathPointsStateCopyWith<$Res>
     implements $PathPointsStateCopyWith<$Res> {
-  factory _$PathPointsStateCopyWith(
-          _PathPointsState value, $Res Function(_PathPointsState) then) =
-      __$PathPointsStateCopyWithImpl<$Res>;
+  factory _$$_PathPointsStateCopyWith(
+          _$_PathPointsState value, $Res Function(_$_PathPointsState) then) =
+      __$$_PathPointsStateCopyWithImpl<$Res>;
   @override
   $Res call({List<PathGroup> groups});
 }
 
 /// @nodoc
-class __$PathPointsStateCopyWithImpl<$Res>
+class __$$_PathPointsStateCopyWithImpl<$Res>
     extends _$PathPointsStateCopyWithImpl<$Res>
-    implements _$PathPointsStateCopyWith<$Res> {
-  __$PathPointsStateCopyWithImpl(
-      _PathPointsState _value, $Res Function(_PathPointsState) _then)
-      : super(_value, (v) => _then(v as _PathPointsState));
+    implements _$$_PathPointsStateCopyWith<$Res> {
+  __$$_PathPointsStateCopyWithImpl(
+      _$_PathPointsState _value, $Res Function(_$_PathPointsState) _then)
+      : super(_value, (v) => _then(v as _$_PathPointsState));
 
   @override
-  _PathPointsState get _value => super._value as _PathPointsState;
+  _$_PathPointsState get _value => super._value as _$_PathPointsState;
 
   @override
   $Res call({
     Object? groups = freezed,
   }) {
-    return _then(_PathPointsState(
+    return _then(_$_PathPointsState(
       groups: groups == freezed
-          ? _value.groups
+          ? _value._groups
           : groups // ignore: cast_nullable_to_non_nullable
               as List<PathGroup>,
     ));
@@ -110,18 +89,19 @@ class __$PathPointsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-@JsonSerializable(fieldRename: FieldRename.snake)
 class _$_PathPointsState
     with DiagnosticableTreeMixin
     implements _PathPointsState {
-  const _$_PathPointsState({this.groups = const []});
+  const _$_PathPointsState({final List<PathGroup> groups = const []})
+      : _groups = groups;
 
-  factory _$_PathPointsState.fromJson(Map<String, dynamic> json) =>
-      _$_$_PathPointsStateFromJson(json);
-
-  @JsonKey(defaultValue: const [])
+  final List<PathGroup> _groups;
   @override
-  final List<PathGroup> groups;
+  @JsonKey()
+  List<PathGroup> get groups {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_groups);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -139,73 +119,38 @@ class _$_PathPointsState
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PathPointsState &&
-            (identical(other.groups, groups) ||
-                const DeepCollectionEquality().equals(other.groups, groups)));
+        (other.runtimeType == runtimeType &&
+            other is _$_PathPointsState &&
+            const DeepCollectionEquality().equals(other._groups, _groups));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(groups);
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_groups));
 
   @JsonKey(ignore: true)
   @override
-  _$PathPointsStateCopyWith<_PathPointsState> get copyWith =>
-      __$PathPointsStateCopyWithImpl<_PathPointsState>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_PathPointsStateToJson(this);
-  }
+  _$$_PathPointsStateCopyWith<_$_PathPointsState> get copyWith =>
+      __$$_PathPointsStateCopyWithImpl<_$_PathPointsState>(this, _$identity);
 }
 
 abstract class _PathPointsState implements PathPointsState {
-  const factory _PathPointsState({List<PathGroup> groups}) = _$_PathPointsState;
-
-  factory _PathPointsState.fromJson(Map<String, dynamic> json) =
-      _$_PathPointsState.fromJson;
+  const factory _PathPointsState({final List<PathGroup> groups}) =
+      _$_PathPointsState;
 
   @override
   List<PathGroup> get groups => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PathPointsStateCopyWith<_PathPointsState> get copyWith =>
+  _$$_PathPointsStateCopyWith<_$_PathPointsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-PathGroup _$PathGroupFromJson(Map<String, dynamic> json) {
-  return _PathGroup.fromJson(json);
-}
-
-/// @nodoc
-class _$PathGroupTearOff {
-  const _$PathGroupTearOff();
-
-  _PathGroup call(
-      {@JsonKey(toJson: offsetListToJson, fromJson: offsetListFromJson)
-          List<Offset> points = const [],
-      bool isClosed = false}) {
-    return _PathGroup(
-      points: points,
-      isClosed: isClosed,
-    );
-  }
-
-  PathGroup fromJson(Map<String, Object> json) {
-    return PathGroup.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $PathGroup = _$PathGroupTearOff();
-
 /// @nodoc
 mixin _$PathGroup {
-  @JsonKey(toJson: offsetListToJson, fromJson: offsetListFromJson)
   List<Offset> get points => throw _privateConstructorUsedError;
   bool get isClosed => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PathGroupCopyWith<PathGroup> get copyWith =>
       throw _privateConstructorUsedError;
@@ -215,10 +160,7 @@ mixin _$PathGroup {
 abstract class $PathGroupCopyWith<$Res> {
   factory $PathGroupCopyWith(PathGroup value, $Res Function(PathGroup) then) =
       _$PathGroupCopyWithImpl<$Res>;
-  $Res call(
-      {@JsonKey(toJson: offsetListToJson, fromJson: offsetListFromJson)
-          List<Offset> points,
-      bool isClosed});
+  $Res call({List<Offset> points, bool isClosed});
 }
 
 /// @nodoc
@@ -248,34 +190,32 @@ class _$PathGroupCopyWithImpl<$Res> implements $PathGroupCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$PathGroupCopyWith<$Res> implements $PathGroupCopyWith<$Res> {
-  factory _$PathGroupCopyWith(
-          _PathGroup value, $Res Function(_PathGroup) then) =
-      __$PathGroupCopyWithImpl<$Res>;
+abstract class _$$_PathGroupCopyWith<$Res> implements $PathGroupCopyWith<$Res> {
+  factory _$$_PathGroupCopyWith(
+          _$_PathGroup value, $Res Function(_$_PathGroup) then) =
+      __$$_PathGroupCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {@JsonKey(toJson: offsetListToJson, fromJson: offsetListFromJson)
-          List<Offset> points,
-      bool isClosed});
+  $Res call({List<Offset> points, bool isClosed});
 }
 
 /// @nodoc
-class __$PathGroupCopyWithImpl<$Res> extends _$PathGroupCopyWithImpl<$Res>
-    implements _$PathGroupCopyWith<$Res> {
-  __$PathGroupCopyWithImpl(_PathGroup _value, $Res Function(_PathGroup) _then)
-      : super(_value, (v) => _then(v as _PathGroup));
+class __$$_PathGroupCopyWithImpl<$Res> extends _$PathGroupCopyWithImpl<$Res>
+    implements _$$_PathGroupCopyWith<$Res> {
+  __$$_PathGroupCopyWithImpl(
+      _$_PathGroup _value, $Res Function(_$_PathGroup) _then)
+      : super(_value, (v) => _then(v as _$_PathGroup));
 
   @override
-  _PathGroup get _value => super._value as _PathGroup;
+  _$_PathGroup get _value => super._value as _$_PathGroup;
 
   @override
   $Res call({
     Object? points = freezed,
     Object? isClosed = freezed,
   }) {
-    return _then(_PathGroup(
+    return _then(_$_PathGroup(
       points: points == freezed
-          ? _value.points
+          ? _value._points
           : points // ignore: cast_nullable_to_non_nullable
               as List<Offset>,
       isClosed: isClosed == freezed
@@ -288,21 +228,21 @@ class __$PathGroupCopyWithImpl<$Res> extends _$PathGroupCopyWithImpl<$Res>
 
 /// @nodoc
 
-@JsonSerializable(fieldRename: FieldRename.snake)
 class _$_PathGroup with DiagnosticableTreeMixin implements _PathGroup {
   const _$_PathGroup(
-      {@JsonKey(toJson: offsetListToJson, fromJson: offsetListFromJson)
-          this.points = const [],
-      this.isClosed = false});
+      {final List<Offset> points = const [], this.isClosed = false})
+      : _points = points;
 
-  factory _$_PathGroup.fromJson(Map<String, dynamic> json) =>
-      _$_$_PathGroupFromJson(json);
+  final List<Offset> _points;
+  @override
+  @JsonKey()
+  List<Offset> get points {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_points);
+  }
 
   @override
-  @JsonKey(toJson: offsetListToJson, fromJson: offsetListFromJson)
-  final List<Offset> points;
-  @JsonKey(defaultValue: false)
-  @override
+  @JsonKey()
   final bool isClosed;
 
   @override
@@ -322,47 +262,34 @@ class _$_PathGroup with DiagnosticableTreeMixin implements _PathGroup {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _PathGroup &&
-            (identical(other.points, points) ||
-                const DeepCollectionEquality().equals(other.points, points)) &&
-            (identical(other.isClosed, isClosed) ||
-                const DeepCollectionEquality()
-                    .equals(other.isClosed, isClosed)));
+        (other.runtimeType == runtimeType &&
+            other is _$_PathGroup &&
+            const DeepCollectionEquality().equals(other._points, _points) &&
+            const DeepCollectionEquality().equals(other.isClosed, isClosed));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(points) ^
-      const DeepCollectionEquality().hash(isClosed);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_points),
+      const DeepCollectionEquality().hash(isClosed));
 
   @JsonKey(ignore: true)
   @override
-  _$PathGroupCopyWith<_PathGroup> get copyWith =>
-      __$PathGroupCopyWithImpl<_PathGroup>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$_$_PathGroupToJson(this);
-  }
+  _$$_PathGroupCopyWith<_$_PathGroup> get copyWith =>
+      __$$_PathGroupCopyWithImpl<_$_PathGroup>(this, _$identity);
 }
 
 abstract class _PathGroup implements PathGroup {
-  const factory _PathGroup(
-      {@JsonKey(toJson: offsetListToJson, fromJson: offsetListFromJson)
-          List<Offset> points,
-      bool isClosed}) = _$_PathGroup;
-
-  factory _PathGroup.fromJson(Map<String, dynamic> json) =
-      _$_PathGroup.fromJson;
+  const factory _PathGroup({final List<Offset> points, final bool isClosed}) =
+      _$_PathGroup;
 
   @override
-  @JsonKey(toJson: offsetListToJson, fromJson: offsetListFromJson)
   List<Offset> get points => throw _privateConstructorUsedError;
   @override
   bool get isClosed => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PathGroupCopyWith<_PathGroup> get copyWith =>
+  _$$_PathGroupCopyWith<_$_PathGroup> get copyWith =>
       throw _privateConstructorUsedError;
 }

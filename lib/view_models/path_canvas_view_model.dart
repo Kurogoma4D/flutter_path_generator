@@ -11,7 +11,7 @@ final pathCanvasViewModel = Provider.autoDispose(
 );
 
 final _latestGroupProvider = Provider.autoDispose((ref) {
-  final groups = ref.watch(pathPointsProvider).groups;
+  final groups = ref.watch(pathPoints).groups;
   return groups.isNotEmpty ? groups.last : null;
 });
 
@@ -21,12 +21,12 @@ class PathCanvasViewModel {
   PathCanvasViewModel({required this.read});
 
   void onTapCanvas(double x, double y) {
-    switch (read(canvasModeProvider).state) {
+    switch (read(canvasMode)) {
       case CanvasMode.addLinear:
         _handleAddLinear(x, y);
         break;
       case CanvasMode.setOrigin:
-        read(canvasOriginProvider.notifier).setOrigin(Offset(x, y));
+        read(canvasOrigin.notifier).setOrigin(Offset(x, y));
         break;
     }
   }
@@ -34,26 +34,26 @@ class PathCanvasViewModel {
   void _handleAddLinear(double x, double y) {
     final latest = read(_latestGroupProvider);
     if (latest == null) {
-      read(pathPointsProvider.notifier).addPoint(x, y);
+      read(pathPoints.notifier).addPoint(x, y);
       return;
     }
 
     final compared =
         Offset(latest.points.first.dx - x, latest.points.first.dy - y);
     if (compared.distance < 16.0) {
-      read(pathPointsProvider.notifier).closePathGroup();
+      read(pathPoints.notifier).closePathGroup();
       return;
     }
 
-    if (latest.isClosed) read(pathPointsProvider.notifier).addGroup();
+    if (latest.isClosed) read(pathPoints.notifier).addGroup();
 
-    read(pathPointsProvider.notifier).addPoint(x, y);
+    read(pathPoints.notifier).addPoint(x, y);
   }
 
-  void setCanvasMode(CanvasMode mode) => read(canvasModeProvider).state = mode;
+  void setCanvasMode(CanvasMode mode) => read(canvasMode.notifier).state = mode;
 
-  void reset() => read(pathPointsProvider.notifier).deleteAll();
+  void reset() => read(pathPoints.notifier).deleteAll();
 
   void updatePointerLocation(double x, double y) =>
-      read(pointerLocationProvider).state = Offset(x, y);
+      read(pointerLocation.notifier).state = Offset(x, y);
 }

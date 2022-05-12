@@ -10,24 +10,22 @@ import 'package:gap/gap.dart';
 
 const isDebug = !bool.fromEnvironment('dart.vm.product');
 
-class PathCanvas extends StatelessWidget {
+class PathCanvas extends ConsumerWidget {
   const PathCanvas({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Stack(
       children: [
         Positioned.fill(
           child: MouseRegion(
-            onHover: (event) => context
+            onHover: (event) => ref
                 .read(pathCanvasViewModel)
                 .updatePointerLocation(
                     event.localPosition.dx, event.localPosition.dy),
             child: GestureDetector(
-              onTapUp: (detail) => context
-                  .read(pathCanvasViewModel)
-                  .onTapCanvas(
-                      detail.localPosition.dx, detail.localPosition.dy),
+              onTapUp: (detail) => ref.read(pathCanvasViewModel).onTapCanvas(
+                  detail.localPosition.dx, detail.localPosition.dy),
               behavior: HitTestBehavior.opaque,
               child: const _Canvas(),
             ),
@@ -41,7 +39,7 @@ class PathCanvas extends StatelessWidget {
             children: [
               const Gap(16),
               ElevatedButton(
-                onPressed: () => context.read(pathCanvasViewModel).reset(),
+                onPressed: () => ref.read(pathCanvasViewModel).reset(),
                 child: Text('RESET'),
               ),
               const Gap(16),
@@ -64,15 +62,14 @@ class _ModeSelect extends ConsumerWidget {
   const _ModeSelect({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final currentMode = watch(canvasModeProvider).state;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentMode = ref.watch(canvasMode);
     return ToggleButtons(
       children: [
         for (final mode in CanvasMode.values) Icon(_canvasModeToIcon(mode)),
       ],
-      onPressed: (index) => context
-          .read(pathCanvasViewModel)
-          .setCanvasMode(CanvasMode.values[index]),
+      onPressed: (index) =>
+          ref.read(pathCanvasViewModel).setCanvasMode(CanvasMode.values[index]),
       isSelected: CanvasMode.values.map((e) => e == currentMode).toList(),
     );
   }
@@ -91,9 +88,9 @@ class _Canvas extends ConsumerWidget {
   const _Canvas({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final groups = watch(pathPointsProvider).groups;
-    final origin = watch(canvasOriginProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final groups = ref.watch(pathPoints.select((value) => value.groups));
+    final origin = ref.watch(canvasOrigin);
     return CustomPaint(
       painter: _PathPainter(groups: groups, origin: origin),
     );
@@ -168,8 +165,8 @@ class _DebugPointerLocation extends ConsumerWidget {
   const _DebugPointerLocation({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final location = watch(pointerLocationProvider).state;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final location = ref.watch(pointerLocation);
     return Text('$location}');
   }
 }

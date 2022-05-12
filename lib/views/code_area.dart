@@ -6,8 +6,8 @@ class CodeArea extends ConsumerWidget {
   const CodeArea({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final code = watch(codeAreaViewModel).generatedCode;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final code = ref.watch(codeAreaViewModel).generatedCode;
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
       child: SelectableText(

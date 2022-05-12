@@ -5,4 +5,4 @@ enum CanvasMode {
   setOrigin,
 }
 
-final canvasModeProvider = StateProvider((_) => CanvasMode.addLinear);
+final canvasMode = StateProvider((_) => CanvasMode.addLinear);
